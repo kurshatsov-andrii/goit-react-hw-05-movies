@@ -9,22 +9,22 @@ import {
   SubmitFormBtn,
 } from './SearchForm.styled';
 
-const SearchForm = ({ setMovieSearch }) => {
-  const [search, setSearch] = useSearchParams();
-  const query = search.get('query') ?? '';
+const SearchForm = ({ setMovieSearch }) => {  
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
 
   const handleSubmit = e => {
     e.preventDefault();
-    setSearch({ query: query.trim() });
+    setSearchParams({ query: query.trim() });
     setMovieSearch(query);
   };
 
   const handleChange = ({ target: { value } }) => {
-    setSearch(value.trim() ? { query: value } : {});
+    setSearchParams(value.trim() ? { query: value } : {});    
   };
 
-  return (
-    <SearchFormStyled onSubmit={handleSubmit}>
+  return (    
+      <SearchFormStyled onSubmit={handleSubmit}>
       <SearchFormBox>
         <FormLabel>
           <InputSearch
@@ -44,4 +44,5 @@ const SearchForm = ({ setMovieSearch }) => {
     </SearchFormStyled>
   );
 };
+
 export default SearchForm;
