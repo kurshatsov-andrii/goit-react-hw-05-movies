@@ -1,5 +1,5 @@
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
 import {
   FormLabel,
   InputSearch,
@@ -10,17 +10,18 @@ import {
 } from './SearchForm.styled';
 
 const SearchForm = ({ setMovieSearch }) => {  
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query') ?? '';
+  const [query , setQuery ] = useState ('');
+  
 
   const handleSubmit = e => {
     e.preventDefault();
-    setSearchParams({ query: query.trim() });
-    setMovieSearch(query);
+setMovieSearch(query);
+    setQuery('');
+    
   };
 
   const handleChange = ({ target: { value } }) => {
-    setSearchParams(value.trim() ? { query: value } : {});    
+    setQuery(value);    
   };
 
   return (    
