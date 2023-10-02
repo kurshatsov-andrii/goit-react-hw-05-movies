@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { getDetailsMovie } from 'api/apiMovies';
 import ButtonBack from 'components/ButtonBack';
@@ -40,7 +40,9 @@ const MovieDetailsPage = () => {
       {detailsMovie && <MovieDetailsSection details={detailsMovie} />}
       <Section>
         <AdditionalInfo />
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </Section>
     </main>
   );

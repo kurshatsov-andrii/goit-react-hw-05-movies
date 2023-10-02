@@ -1,12 +1,4 @@
-import {
-  Suspense,
-  lazy,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { animateScroll as scroll } from 'react-scroll';
 
@@ -93,13 +85,11 @@ const MoviesPage = () => {
         <Container>
           <SearchForm setMovieSearch={onSubmit} />
           {isLoading && <Loader />}
-          <Suspense fallback={<Loader />}>
-            {isError && !isLoading && <ErrorMessage error={isError} />}
-            {movies && <MoviesList moviesList={movies} />}
-            {totalPage > 1 && page < totalPage && (
-              <Button onClick={onChangePage} />
-            )}
-          </Suspense>
+          {isError && !isLoading && <ErrorMessage error={isError} />}
+          {movies && <MoviesList moviesList={movies} />}
+          {totalPage > 1 && page < totalPage && (
+            <Button onClick={onChangePage} />
+          )}
         </Container>
       </Section>
     </main>
