@@ -1,7 +1,8 @@
 import { Section } from 'components/App.styled';
 import ErrorMessage from 'components/ErrorMessage';
 import { Loader } from 'components/Loader';
-import TrendingMovies from 'components/TrendingMovies';
+import { Heading } from 'components/App.styled';
+import MoviesList from 'components/MoviesList';
 import { useEffect, useState } from 'react';
 import { getPopularMovies } from 'api/apiMovies';
 
@@ -30,7 +31,8 @@ const HomePage = () => {
   return (
     <main>
       <Section>
-        {movies && <TrendingMovies movies={movies} />}
+        <Heading>Trending today</Heading>
+        {movies && <MoviesList moviesList={movies} />}
         {isError && <ErrorMessage error={isError} />}
         {isLoading && <Loader />}
       </Section>
